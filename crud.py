@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine, text, delete
 from sqlalchemy.sql import *
-
+from scrape import *
 
 
 engine = create_engine('sqlite:///sb.db')
-
+print = print
 def selectFromBand(name):
     conn = engine.connect()
     if name == "":
@@ -99,15 +99,3 @@ def updateBandName(Oname, Nname):
     s = text("UPDATE Band set name = :x WHERE name = :y")
     s = s.bindparams(x = Nname, y = Oname)
     result = conn.execute(s)
-
-if __name__ == '__main__':
-    selectFromBand(name)
-    #selectFromDiscography()
-    #selectFromMember("(Jhator)")
-    #deleteFromMember("(Jhator)")
-    #deleteFromDiscography("(Jhator)")
-    #deleteFromBand("(Jhator)")
-
-    #updateMemberName("Ola Berg","New Name")
-    #updateDiscographyName("Morte", "New Name")
-    #updateBandName("- - -", "New Name")
